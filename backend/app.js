@@ -16,7 +16,7 @@ connectDB(process.env.MONGOURL || "mongodb://127.0.0.1:27017/gallary")
 
 // Middlewares
 app.use(upload.none()); 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser(process.env.SECRET_KEY));
 
