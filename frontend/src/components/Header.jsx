@@ -1,20 +1,50 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Header = () => {
-  return (
-    <div className='flex h-[800px] w-full'>
-      <div className='w-1/2 flex flex-col items-start px-50  justify-center'>
-          <h1 className='text-6xl font-serif'>Memories are <br />Everything ..,</h1>
-          <p className='py-5'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum pariatur, perspiciatis eius atque dicta, magnam natus quos
-          </p>
-          <button type='submit' className='cursor-pointer border-0 rounded-full shadow-md shadow-gray-800 py-1 px-5 bg-gray-900 text-white text-lg hover:-translate-y-1' onClick={() => navigate("/register")}>Get Started</button>
-      </div>
-      <div className='w-1/2 flex items-center justify-center'>
-      <img className='h-[700px] w-[900px] scale-100 mr-50' src="/src/assets/header.png" alt="" />
-      </div>
-    </div>
-  )
-}
+  const navigate = useNavigate();
 
-export default Header
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: false });
+  }, []);
+
+  return (
+    <section className="w-full h-screen flex flex-col md:flex-row items-center justify-between px-6 lg:px-24 py-10 bg-white">
+      {/* Left Section */}
+      <div
+        className="w-full md:w-1/2 flex flex-col items-start justify-center space-y-6"
+        data-aos="fade-right"
+      >
+        <h1 className="text-5xl lg:text-6xl font-serif font-bold text-gray-900 leading-tight">
+          Memories are <br />
+          <span className="text-[#4169E1]">Everything ...</span>
+        </h1>
+        <p className="text-gray-600 text-base lg:text-lg pr-6">
+          Cherish every moment, capture every frame. Evervue stores your memories safely and beautifully, always at your fingertips.
+        </p>
+        <button
+          onClick={() => navigate('/register')}
+          className="bg-gray-900 text-white px-6 py-3 rounded-full shadow-lg hover:bg-gray-800 hover:translate-y-[-3px] transition-all duration-300"
+        >
+          Get Started
+        </button>
+      </div>
+
+      {/* Right Section */}
+      <div
+        className="w-full md:w-1/2 flex justify-center items-center mt-10 md:mt-0"
+        data-aos="fade-left"
+      >
+        <img
+          src="/src/assets/header.png"
+          alt="Evervue Hero"
+          className="max-w-full h-auto object-contain"
+        />
+      </div>
+    </section>
+  );
+};
+
+export default Header;
